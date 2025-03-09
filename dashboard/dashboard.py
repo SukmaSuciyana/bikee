@@ -109,7 +109,17 @@ fig = px.bar(seasonal_usage, x='season', y=['registered', 'casual'],
              category_orders={"season": ["Spring", "Summer", "Fall", "Winter"]}) # Menambahkan urutan musim
 fig.show()
 # st.subheader("Distribusi Penyewaan Berdasarkan Musim")
+st.subheader("Jumlah Penyewaan Sepeda Berdasarkan Musim")
 
+seasonal_usage = day_df.groupby('season')[['registered', 'casual']].sum().reset_index()
+
+fig = px.bar(seasonal_usage, x='season', y=['registered', 'casual'],
+             title='Jumlah penyewaan sepeda berdasarkan musim',
+             labels={'value': 'Jumlah Penyewaan', 'season': 'Musim'},
+             barmode='group',
+             category_orders={"season": ["Spring", "Summer", "Fall", "Winter"]})
+
+st.plotly_chart(fig)
 # fig = px.box(filtered_df, x='season', y='count', color='season',
 #              category_orders={"season": ["Spring", "Summer", "Fall", "Winter"]},
 #              title='Distribusi Penyewaan Berdasarkan Musim',
