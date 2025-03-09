@@ -100,13 +100,21 @@ fig = px.scatter(filtered_df, x='temp', y='count', color='season',
 st.plotly_chart(fig)
 
 # Pengaruh Musim Terhadap Penyewaan Sepeda
-st.subheader("Distribusi Penyewaan Berdasarkan Musim")
+seasonal_usage = day_df.groupby('season')[['registered', 'casual']].sum().reset_index()
 
-fig = px.box(filtered_df, x='season', y='count', color='season',
-             category_orders={"season": ["Spring", "Summer", "Fall", "Winter"]},
-             title='Distribusi Penyewaan Berdasarkan Musim',
-             labels={'season': 'Musim', 'count': 'Jumlah Penyewaan'})
+fig = px.bar(seasonal_usage, x='season', y=['registered', 'casual'],
+             title='Jumlah penyewaan sepeda berdasarkan musim',
+             labels={'value': 'Jumlah Penyewaan', 'season': 'Musim'},
+             barmode='group',
+             category_orders={"season": ["Spring", "Summer", "Fall", "Winter"]}) # Menambahkan urutan musim
+fig.show()
+# st.subheader("Distribusi Penyewaan Berdasarkan Musim")
 
-st.plotly_chart(fig)
+# fig = px.box(filtered_df, x='season', y='count', color='season',
+#              category_orders={"season": ["Spring", "Summer", "Fall", "Winter"]},
+#              title='Distribusi Penyewaan Berdasarkan Musim',
+#              labels={'season': 'Musim', 'count': 'Jumlah Penyewaan'})
+
+# st.plotly_chart(fig)
 
 st.caption('Copyright (c) Sukma Suciyana 2025')
