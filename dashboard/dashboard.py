@@ -2,10 +2,6 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-import pandas as pd
-import streamlit as st
-import plotly.express as px
-
 st.set_page_config(page_title="Bike Rental Analysis", layout="wide")
 
 try:
@@ -77,8 +73,7 @@ st.subheader("Perbandingan Penyewaan: Working Day vs Non-Working Day")
 fig = px.box(filtered_df, x='workingday', y='count', color='workingday',
              title='Perbandingan Penyewaan: Working Day vs Non-Working Day',
              labels={'workingday': 'Kategori Hari', 'count': 'Jumlah Penyewaan'},
-             category_orders={'workingday': [0, 1]},
-             category_orders_labels={0: 'Non-Working Day', 1: 'Working Day'}
+             category_orders={'workingday': [0, 1]}
              )
 
 fig.update_xaxes(
@@ -87,6 +82,7 @@ fig.update_xaxes(
 )
 
 st.plotly_chart(fig)
+
 
 st.subheader("Tren Penyewaan Sepeda Berdasarkan Waktu")
 
