@@ -47,9 +47,12 @@ filtered_df = day_df[day_df['year'] == year_filter]
 # Pengaruh Kondisi Cuaca Terhadap Penyewaan
 st.subheader("Pengaruh Kondisi Cuaca Terhadap Penyewaan Sepeda")
 
-fig = px.box(filtered_df, x='weather_cond', y='count', color='weather_cond',
-             title='Pengaruh Kondisi Cuaca Terhadap Penyewaan Sepeda',
-             labels={'weather_cond': 'Kondisi Cuaca', 'count': 'Jumlah Penyewaan'})
+# Hitung rata-rata jumlah penyewaan per kondisi cuaca
+avg_rentals = filtered_df.groupby('weather_cond')['count'].mean().reset_index()
+
+fig = px.bar(avg_rentals, x='weather_cond', y='count', color='weather_cond',
+             title='Rata-rata Penyewaan Sepeda Berdasarkan Kondisi Cuaca',
+             labels={'weather_cond': 'Kondisi Cuaca', 'count': 'Rata-rata Jumlah Penyewaan'})
 
 st.plotly_chart(fig)
 
