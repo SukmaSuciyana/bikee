@@ -102,7 +102,7 @@ st.plotly_chart(fig)
 # Pengaruh Musim Terhadap Penyewaan Sepeda
 st.subheader("Distribusi Penyewaan Berdasarkan Musim")
 
-fig = px.bax(filtered_df, x='season', y='count', color='season',
+fig = px.box(filtered_df, x='season', y='count', color='season',
              category_orders={"season": ["Spring", "Summer", "Fall", "Winter"]},
              title='Distribusi Penyewaan Berdasarkan Musim',
              labels={'season': 'Musim', 'count': 'Jumlah Penyewaan'})
