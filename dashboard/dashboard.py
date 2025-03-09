@@ -1,11 +1,9 @@
 import streamlit as st
 import pandas as pd
-import seaborn as sns
 import plotly.express as px
 import plotly.graph_objects as go
 
-# Set style seaborn
-sns.set(style='dark')
+st.set_page_config(page_title="Bike Rental Analysis", layout="wide")
 
 # Menyiapkan data day_df
 day_df = pd.read_csv("dashboard/days.csv")
