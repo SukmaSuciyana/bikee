@@ -55,6 +55,20 @@ fig = px.bar(avg_rentals, x='weather_cond', y='count', color='weather_cond',
 
 st.plotly_chart(fig)
 
+st.subheader("Tren Penyewaan Sepeda Berdasarkan Waktu")
+fig = px.line(filtered_df, x='dateday', y='count', color='year',
+              title='Tren Penyewaan Sepeda Berdasarkan Waktu',
+              labels={'dateday': 'Tanggal', 'count': 'Jumlah Penyewaan', 'year': 'Tahun'})
+
+st.plotly_chart(fig)
+# Hubungan antara suhu dan penyewaan
+st.subheader("Hubungan Antara Suhu dan Jumlah Penyewaan")
+
+fig = px.scatter(filtered_df, x='temp', y='count', color='season',
+                 title='Hubungan Antara Suhu dan Jumlah Penyewaan',
+                 labels={'temp': 'Suhu', 'count': 'Jumlah Penyewaan', 'season': 'Musim'})
+
+st.plotly_chart(fig)
 # Penyewaan berdasarkan hari dalam seminggu
 st.subheader("Penyewaan Sepeda Berdasarkan Hari dalam Minggu")
 
@@ -62,40 +76,6 @@ fig = px.box(filtered_df, x='weekday', y='count', color='weekday',
              category_orders={"weekday": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]},
              title='Penyewaan Sepeda Berdasarkan Hari dalam Minggu',
              labels={'weekday': 'Hari', 'count': 'Jumlah Penyewaan'})
-
-st.plotly_chart(fig)
-
-# Perbandingan hari kerja vs non-hari kerja
-st.subheader("Perbandingan Penyewaan: Working Day vs Non-Working Day")
-
-fig = px.box(filtered_df, x='workingday', y='count', color='workingday',
-             title='Perbandingan Penyewaan: Working Day vs Non-Working Day',
-             labels={'workingday': 'Kategori Hari', 'count': 'Jumlah Penyewaan'},
-             category_orders={'workingday': [0, 1]}
-             )
-
-fig.update_xaxes(
-    tickvals=[0, 1],
-    ticktext=['Non-Working Day', 'Working Day']
-)
-
-st.plotly_chart(fig)
-
-
-st.subheader("Tren Penyewaan Sepeda Berdasarkan Waktu")
-
-fig = px.line(filtered_df, x='dateday', y='count', color='year',
-              title='Tren Penyewaan Sepeda Berdasarkan Waktu',
-              labels={'dateday': 'Tanggal', 'count': 'Jumlah Penyewaan', 'year': 'Tahun'})
-
-st.plotly_chart(fig)
-
-# Hubungan antara suhu dan penyewaan
-st.subheader("Hubungan Antara Suhu dan Jumlah Penyewaan")
-
-fig = px.scatter(filtered_df, x='temp', y='count', color='season',
-                 title='Hubungan Antara Suhu dan Jumlah Penyewaan',
-                 labels={'temp': 'Suhu', 'count': 'Jumlah Penyewaan', 'season': 'Musim'})
 
 st.plotly_chart(fig)
 
@@ -115,6 +95,22 @@ fig = px.bar(seasonal_usage, x='season', y=['registered', 'casual'],
              labels={'value': 'Jumlah Penyewaan', 'season': 'Musim'},
              barmode='group',
              category_orders={"season": ["Spring", "Summer", "Fall", "Winter"]})
+
+st.plotly_chart(fig)
+
+# Perbandingan hari kerja vs non-hari kerja
+st.subheader("Perbandingan Penyewaan: Working Day vs Non-Working Day")
+
+fig = px.box(filtered_df, x='workingday', y='count', color='workingday',
+             title='Perbandingan Penyewaan: Working Day vs Non-Working Day',
+             labels={'workingday': 'Kategori Hari', 'count': 'Jumlah Penyewaan'},
+             category_orders={'workingday': [0, 1]}
+             )
+
+fig.update_xaxes(
+    tickvals=[0, 1],
+    ticktext=['Non-Working Day', 'Working Day']
+)
 
 st.plotly_chart(fig)
 st.caption('Copyright (c) Sukma Suciyana 2025')
