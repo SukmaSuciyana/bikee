@@ -20,7 +20,6 @@ day_df.rename(columns={
 
 month_map = {1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr', 5: 'May', 6: 'Jun',
              7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec'}
-
 season_map = {1: 'Spring', 2: 'Summer', 3: 'Fall', 4: 'Winter'}
 weekday_map = {0: 'Sun', 1: 'Mon', 2: 'Tue', 3: 'Wed', 4: 'Thu', 5: 'Fri', 6: 'Sat'}
 weather_map = {1: 'Clear/Partly Cloudy', 2: 'Misty/Cloudy', 3: 'Light Snow/Rain', 4: 'Severe Weather'}
@@ -59,7 +58,7 @@ st.plotly_chart(fig)
 # Penyewaan berdasarkan hari dalam seminggu
 st.subheader("Penyewaan Sepeda Berdasarkan Hari dalam Minggu")
 
-fig = px.bar(filtered_df, x='weekday', y='count', color='weekday',
+fig = px.box(filtered_df, x='weekday', y='count', color='weekday',
              category_orders={"weekday": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]},
              title='Penyewaan Sepeda Berdasarkan Hari dalam Minggu',
              labels={'weekday': 'Hari', 'count': 'Jumlah Penyewaan'})
@@ -69,7 +68,7 @@ st.plotly_chart(fig)
 # Perbandingan hari kerja vs non-hari kerja
 st.subheader("Perbandingan Penyewaan: Working Day vs Non-Working Day")
 
-fig = px.bar(filtered_df, x='workingday', y='count', color='workingday',
+fig = px.box(filtered_df, x='workingday', y='count', color='workingday',
              title='Perbandingan Penyewaan: Working Day vs Non-Working Day',
              labels={'workingday': 'Kategori Hari', 'count': 'Jumlah Penyewaan'},
              category_orders={'workingday': [0, 1]}
@@ -103,7 +102,7 @@ st.plotly_chart(fig)
 # Pengaruh Musim Terhadap Penyewaan Sepeda
 st.subheader("Distribusi Penyewaan Berdasarkan Musim")
 
-fig = px.bar(filtered_df, x='season', y='count', color='season',
+fig = px.bax(filtered_df, x='season', y='count', color='season',
              category_orders={"season": ["Spring", "Summer", "Fall", "Winter"]},
              title='Distribusi Penyewaan Berdasarkan Musim',
              labels={'season': 'Musim', 'count': 'Jumlah Penyewaan'})
