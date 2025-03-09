@@ -4,12 +4,8 @@ import plotly.express as px
 
 st.set_page_config(page_title="Bike Rental Analysis", layout="wide")
 
-try:
-    day_df = pd.read_csv("dashboard/days.csv") 
-
-except FileNotFoundError:
-    st.error("Error: File 'days.csv' tidak ditemukan. Pastikan file ada di direktori yang benar.")
-    st.stop()
+day_df = pd.read_csv("dashboard/days.csv")
+day_df.head()
 
 # Data Cleaning & Transformation
 day_df.drop(columns=['instant', 'windspeed'], inplace=True, errors='ignore')
